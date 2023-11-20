@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(){
+ int position,n,i,a[100];
+ printf("Enter the no. of elements in the array: \n");
+ scanf("%d",&n);
+
+ printf("Enter the elements of the array: \n");
+ for(i=0; i<n; i++){
+    scanf("%d",&a[i]);
+    }
+ printf("Enter the position from which data is to be deleted: \n");
+ scanf("%d",&position);
+
+  if(position<=0 || position > n)
+    printf("Invalid position\n");
+ else{
+ for(int i = (position-1);i < (n-1);i++){
+    a[i] = a[i+1];
+ }
+ }
+ printf("The modified array: \n");
+    for(i = 0; i < n-1;i++){
+    printf("%d ",a[i]);
+    }
+return 0;
+}
