@@ -1,0 +1,56 @@
+#include <stdio.h>
+int insertion(int arr[100], int *n){
+ int value,pos;
+ printf("Enter the value to be inserted: \n");
+ scanf("%d",&value);
+ printf("Enter the position at which it is to be inserted: \n");
+ scanf("%d",&pos);
+ if(pos<=0 || pos > *n+1)
+    printf("Invalid position\n");
+ else{
+ for(int i = (*n-1);i>= (pos-1);i--){
+    arr[i+1] = arr[i];
+ }
+ arr[pos-1] = value;
+ (*n)++;
+ }
+}
+
+int deletion(int arr[100], int *n){
+    int position;
+ printf("Enter the position from which data is to be deleted: \n");
+ scanf("%d",&position);
+ if(position<=0 || position > (*n))
+    printf("Invalid position\n");
+ else{
+ for(int i = (position-1);i < (*n-1);i++){
+    arr[i] = arr[i+1];
+ }
+ (*n)--;
+ }
+}
+
+int main(){
+    int n,i,a[100],choice,newn;
+    printf("Enter the no. of elements in the array: \n");
+    scanf("%d",&n);
+
+    printf("Enter the elements of the array: \n");
+    for(i=0; i<n; i++){
+        scanf("%d",&a[i]);
+    }
+
+    printf("Enter the numeric choice: 1. Insertion 2. Deletion \n");
+    scanf("%d",&choice);
+    if(choice == 1)
+        insertion(a,&n);
+    else
+        deletion(a,&n);
+
+    printf("The modified array: \n");
+    for(i = 0; i < n;i++){
+    printf("%d ",a[i]);
+    }
+
+return 0;
+}
