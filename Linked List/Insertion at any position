@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node  *head;
+
+void createNodeList(int n) {
+    struct node *newNode, *temp;
+    int data, nodeCounter;
+
+    // Allocate memory for the head
+    head = (struct node *)malloc(sizeof(struct node));
+
+    printf("Input data for node 1: ");
+    scanf("%d", &data);
+
+    head->data = data;
+    head->next = NULL;
+    temp = head;
+
+    for (nodeCounter = 2; nodeCounter <= n; nodeCounter++) {
+        newNode = (struct node *)malloc(sizeof(struct node));
+
+            printf("Input data for node %d: ", nodeCounter);
+            scanf("%d", &data);
+
+            newNode->data = data;
+            newNode->next = NULL;
+
+            // Link the previous node to the current node
+            temp->next = newNode;
+            // Move to the next node
+            temp = temp->next;
+        }
+    }
+
+void NodeInsertion(int num, int pos){
+    struct node *newNode, *temp;
+    int count;
+    int i=1;
+    temp = head;
+    while (i < pos){
+        temp = temp -> next;
+        i++;
+        }
+    newNode = (struct node *)malloc(sizeof(struct node));
+    newNode -> data = num;
+    newNode -> next = temp ->next;
+    temp ->next = newNode;
+    }
+
+void displayList() {
+    struct node *temp;
+    temp = head;
+    if (temp == NULL) {
+        printf("List is empty\n");
+    } else {
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        }
+    }
+}
+
+int main() {
+    int n,num,pos;  // Declare 'n' here for it to be visible in the main function
+    printf("Enter the no. of nodes: ");
+    scanf("%d", &n);
+    createNodeList(n);
+    printf("Linked list before any insertion: ");
+    displayList();
+    printf("\nEnter the data to be inserted: ");
+    scanf("%d",&num);
+    printf("\n Enter the position after which it is to be inserted: ");
+    scanf("%d",&pos);
+    NodeInsertion(num,pos);
+    printf("Linked list after insertion: ");
+    displayList();
+    return 0;
+}
