@@ -60,7 +60,7 @@ void displayList() {
 }
 
 int main() {
-    int n,num,pos;  // Declare 'n' here for it to be visible in the main function
+    int n;  // Declare 'n' here for it to be visible in the main function
     printf("Enter the no. of nodes: ");
     scanf("%d", &n);
     createNodeList(n);
