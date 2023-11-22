@@ -12,15 +12,15 @@ void createNodeList(int n) {
     struct node *newNode, *temp;
     int data, nodeCounter;
 
-    // Allocate memory for the head
-    head = (struct node *)malloc(sizeof(struct node));
+    // Allocate memory for the temp
+    temp = (struct node *)malloc(sizeof(struct node));
 
     printf("Input data for node 1: ");
     scanf("%d", &data);
 
-    head->data = data;
-    head->next = NULL;
-    temp = head;
+    temp->data = data;
+    temp->next = NULL;
+    head=temp;
 
     for (nodeCounter = 2; nodeCounter <= n; nodeCounter++) {
         newNode = (struct node *)malloc(sizeof(struct node));
@@ -61,3 +61,4 @@ int main() {
 
     return 0;
 }
+
