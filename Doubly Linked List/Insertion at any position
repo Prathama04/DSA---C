@@ -30,31 +30,31 @@ void DLLcreate(int n){
 }
 }
 }
-void insertionafterpos(int n){
+void insertionatpos(int n){
     struct node *temp;
     int pos,i=1;
     temp = head;
     newnode = (struct node *)malloc(sizeof(struct node));
     printf("\nEnter the data to be inserted: ");
     scanf("%d",&newnode->data);
-    printf("\nEnter the position after which data is to be inserted: ");
+    printf("\nEnter the position at which data is to be inserted: ");
     scanf("%d",&pos);
-    if(pos < 0 || pos > n)
+    if(pos < 1 || pos > (n+1))
         printf("Invalid position");
-    else if(pos == 0){
+    else if(pos == 1){
         newnode -> next = head;
         head -> prev = newnode;
         newnode -> prev = NULL;
         head = newnode;
     }
-     else if(pos == n){
+     else if(pos == n+1){
         newnode -> next = NULL;
         newnode -> prev = endnode;
         endnode->next = newnode;
         endnode= newnode;
     }
     else{
-       while(i < pos) {
+       while(i < pos-1) {
         temp = temp->next;
         i++;
        }
@@ -86,8 +86,9 @@ int main() {
     DLLcreate(n);
     printf("\nDLL before any insertion: ");
     displayList();
-    insertionafterpos(n);
+    insertionatpos(n);
     printf("\nDLL after any insertion: ");
     displayList();
     return 0;
 }
+
