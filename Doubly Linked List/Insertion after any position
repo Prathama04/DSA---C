@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+int data;
+struct node *next;
+struct node *prev;
+};
+
+struct node *head,*newnode, *endnode;
+void DLLcreate(int n){
+    struct node *temp;
+    int i,data;
+    if(n>=1){
+            temp = (struct node *)malloc(sizeof(struct node));
+            printf("Input data for node 1: ");
+            scanf("%d",&temp-> data);
+            temp -> prev = 0;
+            temp -> next = 0;
+            head = endnode = temp;
+            for(i=2;i<=n;i++){
+                    newnode = (struct node *)malloc(sizeof(struct node));
+                    printf(" Input data for node %d : ", i);
+                    scanf("%d", &data);
+                    newnode->data = data;
+                    newnode-> prev = endnode;
+                    newnode->next = NULL;
+                    endnode->next= newnode;
+                    endnode = newnode;
+}
+}
+}
+void insertionafterpos(int n){
+    struct node *temp;
+    int pos,i=1;
+    temp = head;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the data to be inserted: ");
+    scanf("%d",&newnode->data);
+    printf("\nEnter the position after which data is to be inserted: ");
+    scanf("%d",&pos);
+    if(pos < 0 || pos > n)
+        printf("Invalid position");
+    else if(pos == 0){
+        newnode -> next = head;
+        head -> prev = newnode;
+        newnode -> prev = NULL;
+        head = newnode;
+    }
+     else if(pos == n){
+        newnode -> next = NULL;
+        newnode -> prev = endnode;
+        endnode->next = newnode;
+        endnode= newnode;
+    }
+    else{
+       while(i < pos) {
+        temp = temp->next;
+        i++;
+       }
+       newnode -> next =temp->next;
+       newnode -> prev = temp;
+       temp->next = newnode;
+       newnode ->next->prev = newnode;
+    }
+
+};
+void displayList() {
+    struct node *temp;
+    temp = head;
+    if (temp == NULL) {
+        printf("List is empty\n");
+    } else {
+        while (temp != NULL) {
+            printf("%d -> ", temp->data);
+            temp = temp->next;
+        }
+    }
+}
+
+
+int main() {
+    int n;  // Declare 'n' here for it to be visible in the main function
+    printf("Enter the no. of nodes: ");
+    scanf("%d", &n);
+    DLLcreate(n);
+    printf("\nDLL before any insertion: ");
+    displayList();
+    insertionafterpos(n);
+    printf("\nDLL after any insertion: ");
+    displayList();
+    return 0;
+}
