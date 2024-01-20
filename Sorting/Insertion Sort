@@ -1,4 +1,4 @@
-#inc lude <stdio.h>
+#include <stdio.h>
 
 void insertion_sort(int arr[],int n){
 int i,j,key;
